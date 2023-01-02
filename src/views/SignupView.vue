@@ -1,5 +1,5 @@
 <template>
-  <div class="signup">
+  <div class="signup container-fluid">
     <h1>This is signup page</h1>
   </div>
 </template>
