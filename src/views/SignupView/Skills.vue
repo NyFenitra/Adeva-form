@@ -1,6 +1,7 @@
 <template>
   <div class="step-3 step">
     <h3>Which skills or expertise do you need?</h3>
+
     <!-- Custom Select -->
     <div class="custom-select">
       <h6>Skills</h6>
@@ -11,6 +12,7 @@
         placeholder="Desired areas of expertise (e.g., JavaScript, Ruby, etc.)"
         @click.stop="showOption = !showOption"
       />
+
       <!-- Option based on data -->
       <div v-if="showOption" class="option">
         <div
@@ -23,6 +25,8 @@
         </div>
       </div>
     </div>
+
+    <!-- Selected -->
     <div class="selected d-flex flex-wrap">
       <div
         v-for="item in steps[2]"
@@ -31,6 +35,23 @@
         @click="removeSkills(item)"
       >
         {{ item }}
+      </div>
+    </div>
+
+    <!-- Suggestion -->
+    <div class="suggestion">
+      <h6>
+        Popular skills for <span class="highlights">{{ steps[0] }}</span>
+      </h6>
+      <div class="d-flex flex-wrap">
+        <div
+          v-for="item in popularData"
+          :key="item.name"
+          class="item-selected"
+          @click="select(item.name)"
+        >
+          {{ item.name }}
+        </div>
       </div>
     </div>
   </div>
@@ -57,8 +78,13 @@ const data = computed(() =>
     : skills
 );
 
+const popularData = ref(skills.slice(-10));
+
 // Close option when clicking to window
-const closeOption = () => (showOption.value = false);
+const closeOption = () => {
+  showOption.value = false;
+  search.value = '';
+};
 
 onMounted(() => {
   window.addEventListener('click', closeOption);
@@ -88,13 +114,14 @@ const select = (value: string) => {
     padding-top: 25px;
   }
 
+  h6 {
+    font-family: 'Inter', sans-serif;
+    font-size: 14px;
+    font-weight: 700;
+  }
+
   .custom-select {
     margin-bottom: 10px;
-    h6 {
-      font-family: 'Inter', sans-serif;
-      font-size: 14px;
-      font-weight: 700;
-    }
 
     .search {
       outline: none;
@@ -142,30 +169,58 @@ const select = (value: string) => {
     }
   }
 
+  .item-selected {
+    list-style: none;
+    border-radius: 100px;
+    font-size: 12px;
+    cursor: pointer;
+    margin-top: 8px;
+    margin-right: 8px;
+    position: relative;
+    color: #198cca;
+    padding: 5px 15px 5px 30px;
+    border: 1px solid rgba(25, 140, 202, 0.1);
+
+    &:hover {
+      background-color: rgba(25, 140, 202, 0.1);
+    }
+
+    &::after {
+      content: '';
+      background-image: url('@/assets/svg/tag-remove.svg');
+      display: block;
+      width: 8px;
+      height: 8px;
+      position: absolute;
+      background-size: cover;
+      top: 50%;
+      transform: translateY(-50%) rotate(45deg);
+      right: unset;
+      left: 12px;
+    }
+  }
+
   .selected {
     .item-selected {
-      list-style: none;
-      background-color: rgba(25, 140, 202, 0.1);
-      border-radius: 100px;
-      font-size: 12px;
-      cursor: pointer;
-      margin-top: 8px;
-      margin-right: 8px;
       padding: 5px 30px 5px 15px;
-      position: relative;
-      color: #198cca;
+      background-color: rgba(25, 140, 202, 0.1);
+      border: none;
 
       &::after {
-        content: '';
-        display: block;
-        width: 8px;
-        height: 8px;
-        background-image: url('@/assets/svg/tag-remove.svg');
-        background-size: cover;
-        position: absolute;
-        right: 12px;
-        top: 50%;
         transform: translateY(-50%);
+        right: 12px;
+        left: unset;
+      }
+    }
+  }
+
+  .suggestion {
+    margin-top: 20px;
+
+    h6 {
+      .highlights {
+        color: #198cca;
+        text-transform: capitalize;
       }
     }
   }

@@ -8,11 +8,11 @@
     <div class="item-container d-flex flex-column">
       <Item
         v-for="item in step1Items"
-        :key="item.value"
+        :key="item.title"
         :title="item.title"
         :desc="item.desc"
-        :class="{ active: steps[stepNumber - 1] === item.value }"
-        @click="onSelectItem(item.value)"
+        :class="{ active: steps[stepNumber - 1] === item.title }"
+        @click="onSelectItem(item.title)"
       />
     </div>
   </div>

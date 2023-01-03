@@ -2,27 +2,22 @@ export const step1Items = [
   {
     title: 'Developers',
     desc: 'Software Engineers, Integration Developers, and DevOps.',
-    value: 'developers',
   },
   {
     title: 'Designers',
     desc: 'UI/UX, Branding, and Visual Designers.',
-    value: 'designers',
   },
   {
     title: 'Product Managers',
     desc: 'Product Managers, Product Owners, and Business Analysts.',
-    value: 'product_managers',
   },
   {
     title: 'Data Experts',
     desc: 'Data Scientists, Big Data Experts, and Data Analysts.',
-    value: 'data_experts',
   },
   {
     title: 'QA',
     desc: 'Manual, Automation Engineers and Test Analysts.',
-    value: 'qa',
   },
 ];
 
