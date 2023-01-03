@@ -102,10 +102,17 @@ const next = () => {
     width: 100%;
 
     .left {
-      overflow: scroll;
+      overflow: auto;
       scrollbar-width: none;
+      -ms-overflow-style: none; /* IE and Edge */
+
       height: 100vh;
       position: relative;
+
+      /* Hide scrollbar for Chrome, Safari and Opera */
+      &::-webkit-scrollbar {
+        display: none;
+      }
 
       .logo {
         position: absolute;
