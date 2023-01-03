@@ -136,3 +136,18 @@ export const skills = [
   { id: 99, slug: 'devexpress', name: 'DevExpress' },
   { id: 100, slug: 'dotnetnuke', name: 'DotNetNuke' },
 ];
+
+export const step4Items = [
+  {
+    title: 'Immediately',
+  },
+  {
+    title: 'In 1 to 4 weeks',
+  },
+  {
+    title: 'In 1 to 2 months',
+  },
+  {
+    title: 'More than 2 months from now',
+  },
+];
