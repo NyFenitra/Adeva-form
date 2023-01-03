@@ -8,7 +8,6 @@ import './assets/scss/main.scss';
 
 // Bootstrap
 import 'bootstrap/dist/js/bootstrap.js';
-import 'bootstrap/scss/bootstrap.scss';
 
 const app = createApp(App);
 
