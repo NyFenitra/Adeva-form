@@ -19,12 +19,16 @@
           <div class="content">
             <RouterView />
             <div
-              v-if="stepNumber > 1"
+              v-if="stepNumber > 1 && stepNumber < 6"
               class="navigation d-flex align-items-center justify-content-between"
             >
               <button class="back" @click="back">Back</button>
               <button v-if="stepNumber === 3" class="next" @click="next">
                 Next
+              </button>
+              <!-- In step 6, data in store are ready to be sended to any existing backend -->
+              <button v-if="stepNumber === 5" class="next" @click="next">
+                Submit
               </button>
             </div>
           </div>
@@ -90,7 +94,7 @@ const next = () => {
   padding-left: 30px;
   padding-right: 0;
 
-  .row {
+  & > .row {
     width: 100%;
 
     .left {
