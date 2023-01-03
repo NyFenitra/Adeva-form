@@ -1,16 +1,24 @@
-import { ref } from 'vue';
+import { computed, ref } from 'vue';
 import { defineStore } from 'pinia';
+import { useRoute } from 'vue-router';
 
 // Store all selected value in store
 export const useStepsStore = defineStore('steps', () => {
-  // Get step1 from persisted localstorage
-  const step1 = ref(JSON.parse(localStorage.getItem('step1') as string));
+  // Store step number
+  const route = useRoute();
+  const stepNumber = computed(() =>
+    Number(route.name?.toString().split('-')[1])
+  );
 
-  // Persist step1 to localstorage
-  const setStep1 = (value: string) => {
-    step1.value = value;
-    localStorage.setItem('step1', JSON.stringify(step1.value));
+  // Store steps as array and persist in localstorage
+  const steps = ref(JSON.parse(localStorage.getItem('steps') as string) || []);
+
+  // Index based on step number
+  const setSteps = (value: string, index: number) => {
+    steps.value[index] = value;
+    localStorage.setItem('steps', JSON.stringify(steps.value));
   };
+  //
 
-  return { step1, setStep1 };
+  return { stepNumber, steps, setSteps };
 });

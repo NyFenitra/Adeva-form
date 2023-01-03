@@ -2,18 +2,20 @@
   <div class="signup container-fluid">
     <div class="row">
       <div class="left col-12 col-lg-7 col-xl-8">
-        <!-- Logo display based on number of step -->
-        <AppLogo :class="{ small: numberOfStep > 1 }" />
+        <!-- Logo display based on step number -->
+        <AppLogo :class="{ small: stepNumber > 1 }" />
+
         <div class="steps">
-          <!-- Progress-bar based on number of step -->
-          <div v-if="route.name !== 'step-1'" class="progressbar">
+          <!-- Progress-bar based on step number -->
+          <div v-if="stepNumber !== 1" class="progressbar">
             <div
               v-for="index in 5"
               :key="index"
               class="col-md-3 progress-bar-item"
-              :class="{ active: index < numberOfStep }"
+              :class="{ active: index < stepNumber }"
             />
           </div>
+
           <div class="content">
             <RouterView />
           </div>
@@ -49,16 +51,16 @@
 </template>
 
 <script setup lang="ts">
-import { RouterView, useRoute } from 'vue-router';
-import { computed } from 'vue';
+import { RouterView } from 'vue-router';
+import { useStepsStore } from '@/stores/steps';
+import { storeToRefs } from 'pinia';
 
 import AppLogo from '@/components/AppLogo.vue';
 
-// Get step number from route name
-const route = useRoute();
-const numberOfStep = computed(() =>
-  Number(route.name?.toString().split('-')[1])
-);
+// Get step number
+const stepsStore = useStepsStore();
+
+const { stepNumber } = storeToRefs(stepsStore);
 </script>
 
 <style lang="scss">
@@ -124,6 +126,10 @@ const numberOfStep = computed(() =>
             .desc {
               margin: 15px 0 30px 0;
               font-size: 14px;
+            }
+
+            .item-container {
+              gap: 15px;
             }
           }
         }

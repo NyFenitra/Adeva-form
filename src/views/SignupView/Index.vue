@@ -11,7 +11,7 @@
         :key="item.value"
         :title="item.title"
         :desc="item.desc"
-        :class="{ active: step1 === item.value }"
+        :class="{ active: steps[stepNumber - 1] === item.value }"
         @click="onSelectItem(item.value)"
       />
     </div>
@@ -28,8 +28,8 @@ import { useStepsStore } from '@/stores/steps';
 // Use steps store
 const stepsStore = useStepsStore();
 
-const { setStep1 } = stepsStore;
-const { step1 } = storeToRefs(stepsStore);
+const { setSteps } = stepsStore;
+const { steps, stepNumber } = storeToRefs(stepsStore);
 
 const router = useRouter();
 
@@ -62,18 +62,10 @@ const items = [
 ];
 
 const onSelectItem = (value: string) => {
-  setStep1(value);
+  setSteps(value, stepNumber.value - 1);
 
   setTimeout(() => {
-    router.push({ name: 'step-2' });
+    router.push({ name: `step-${stepNumber.value + 1}` });
   }, 1000);
 };
 </script>
-
-<style scoped lang="scss">
-.step-1 {
-  .item-container {
-    gap: 15px;
-  }
-}
-</style>
