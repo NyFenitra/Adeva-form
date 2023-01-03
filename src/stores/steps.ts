@@ -4,7 +4,7 @@ import { useRoute } from 'vue-router';
 
 // Store all selected value in store
 export const useStepsStore = defineStore('steps', () => {
-  // Store step number
+  // Get and store step number from route name
   const route = useRoute();
   const stepNumber = computed(() =>
     Number(route.name?.toString().split('-')[1])
