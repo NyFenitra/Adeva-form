@@ -1,9 +1,11 @@
 <template>
   <div class="signup container-fluid">
-    <div class="row w-100">
+    <div class="row">
       <div class="left col-12 col-lg-7 col-xl-8">
+        <!-- Logo display based on number of step -->
         <AppLogo :class="{ small: numberOfStep > 1 }" />
         <div class="steps">
+          <!-- Progress-bar based on number of step -->
           <div v-if="route.name !== 'step-1'" class="progressbar">
             <div
               v-for="index in 5"
@@ -59,85 +61,106 @@ const numberOfStep = computed(() =>
 );
 </script>
 
-<style scoped lang="scss">
+<style lang="scss">
 .signup {
-  min-height: 100vh;
   display: flex;
   padding-left: 30px;
   padding-right: 0;
 
-  .left {
-    .logo {
-      position: absolute;
-      top: 20px;
-      left: 46px;
+  .row {
+    width: 100%;
 
-      &.small {
-        left: 30px;
-      }
-    }
-
-    .steps {
-      max-width: 770px;
-      margin: auto;
-      padding: 60px 15px;
+    .left {
+      overflow: scroll;
+      scrollbar-width: none;
+      height: 100vh;
       position: relative;
 
-      .progressbar {
+      .logo {
         position: absolute;
-        top: 40px;
-        width: calc(100% - 30px);
-        display: flex;
-        gap: 4px;
+        top: 20px;
+        left: 28px;
 
-        .progress-bar-item {
-          width: 20%;
-          padding: 0 2px;
-          background-color: #e1e3eb;
-          height: 2px;
-
-          &.active {
-            background-color: #198cca;
-          }
+        &.small {
+          left: 30px;
         }
       }
 
-      .content {
-        margin-top: 80px;
+      .steps {
+        max-width: 770px;
+        width: 100%;
+        margin: auto;
+        padding: 60px 30px;
+        position: relative;
+
+        .progressbar {
+          position: absolute;
+          top: 40px;
+          width: calc(100% - 30px);
+          display: flex;
+          gap: 4px;
+
+          .progress-bar-item {
+            width: 20%;
+            padding: 0 2px;
+            background-color: #e1e3eb;
+            height: 2px;
+
+            &.active {
+              background-color: #198cca;
+            }
+          }
+        }
+
+        .content {
+          margin-top: 80px;
+
+          .step {
+            h3 {
+              font-size: 20px;
+              margin-top: 25px;
+            }
+
+            .desc {
+              margin: 15px 0 30px 0;
+              font-size: 14px;
+            }
+          }
+        }
       }
     }
-  }
 
-  .right {
-    padding: 0 50px;
+    .right {
+      padding: 0 50px;
 
-    h5 {
-      margin-bottom: 20px;
-      font-size: 16px;
-    }
-
-    .partners {
-      border-bottom: 1px solid #e1e3eb;
-      padding-bottom: 20px;
-
-      img {
-        width: 146px;
-        filter: grayscale(1);
-        opacity: 0.5;
+      h5 {
+        margin-bottom: 20px;
+        font-size: 16px;
       }
-    }
 
-    .text {
-      padding: 20px 0;
-      line-height: 28px;
+      .partners {
+        border-bottom: 1px solid #e1e3eb;
+        padding-bottom: 20px;
 
-      p {
-        margin: 1rem 0;
+        img {
+          width: 146px;
+          filter: grayscale(1);
+          opacity: 0.5;
+        }
+      }
 
-        .phone-num {
-          color: #1a284d;
-          font-weight: 700;
-          text-decoration: none;
+      .text {
+        padding: 20px 0;
+        line-height: 28px;
+
+        p {
+          margin: 1rem 0;
+
+          .phone-num {
+            color: #1a284d;
+            font-weight: 700;
+            text-decoration: none;
+          }
         }
       }
     }
@@ -146,33 +169,45 @@ const numberOfStep = computed(() =>
   @media screen and (max-width: 767px) {
     padding: 0 15px;
 
-    .left {
-      .logo {
-        &.small {
-          left: 50%;
-          transform: translateX(-50%);
+    .row {
+      width: unset;
+      padding: 0 15px;
+
+      .left {
+        overflow: unset;
+        height: unset;
+
+        .logo {
+          left: 15px;
+
+          &.small {
+            left: 50%;
+            transform: translateX(-50%);
+          }
+        }
+
+        .steps {
+          padding: 60px 0;
+
+          .progressbar {
+            top: 90px;
+          }
         }
       }
 
-      .steps {
-        .progressbar {
-          top: 90px;
+      .right {
+        background-color: #f9fafc;
+        padding: 20px;
+
+        .partners {
+          img {
+            width: 120px;
+          }
         }
-      }
-    }
 
-    .right {
-      background-color: #f9fafc;
-      padding: 20px;
-
-      .partners {
-        img {
-          width: 120px;
+        .text {
+          font-size: 14px;
         }
-      }
-
-      .text {
-        font-size: 14px;
       }
     }
   }
