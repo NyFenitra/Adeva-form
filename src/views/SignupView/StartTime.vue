@@ -39,5 +39,3 @@ const onSelectItem = (value: string) => {
   }, 1000);
 };
 </script>
-
-<style scoped></style>
