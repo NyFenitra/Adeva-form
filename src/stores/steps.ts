@@ -20,7 +20,7 @@ export const useStepsStore = defineStore('steps', () => {
   };
   //
 
-  // Skills is an array
+  // Skills as an array
   const pushSkills = (value: string) => {
     // Initialize skills as array if not defined
     steps.value[2] = Array.isArray(steps.value[2]) ? steps.value[2] : [];
@@ -39,5 +39,23 @@ export const useStepsStore = defineStore('steps', () => {
   };
   //
 
-  return { stepNumber, steps, setSteps, pushSkills, removeSkills };
+  // Form data
+  const firstName = ref('');
+  const lastName = ref('');
+  const email = ref('');
+  const phone = ref('');
+  const dialCode = ref('');
+
+  return {
+    stepNumber,
+    steps,
+    setSteps,
+    pushSkills,
+    removeSkills,
+    firstName,
+    lastName,
+    email,
+    phone,
+    dialCode,
+  };
 });
