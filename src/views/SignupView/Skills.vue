@@ -58,7 +58,7 @@
 </template>
 
 <script setup lang="ts">
-import { ref, computed, onMounted, onBeforeMount } from 'vue';
+import { ref, computed, onMounted, onBeforeUnmount } from 'vue';
 import { storeToRefs } from 'pinia';
 
 // Import step 3 data
@@ -90,7 +90,7 @@ onMounted(() => {
   window.addEventListener('click', closeOption);
 });
 
-onBeforeMount(() => {
+onBeforeUnmount(() => {
   window.removeEventListener('click', closeOption);
 });
 
