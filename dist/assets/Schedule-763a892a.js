@@ -1,0 +1,1 @@
+import{_ as e}from"./_plugin-vue_export-helper-c27b6911.js";import{o as t,b as o,e as s}from"./index-27d7181d.js";const c={},a={class:"step-6 step"},n=s("h3",null,"Welcome! Let's schedule a call to introduce Adeva",-1),r=[n];function _(d,l){return t(),o("div",a,r)}const h=e(c,[["render",_]]);export{h as default};
