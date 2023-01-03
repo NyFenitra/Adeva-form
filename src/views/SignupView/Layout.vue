@@ -18,6 +18,13 @@
 
           <div class="content">
             <RouterView />
+            <div
+              v-if="stepNumber > 1"
+              class="navigation d-flex align-items-center justify-content-between"
+            >
+              <button class="back" @click="back">Back</button>
+              <button v-if="stepNumber === 3" class="next">Next</button>
+            </div>
           </div>
         </div>
       </div>
@@ -51,16 +58,23 @@
 </template>
 
 <script setup lang="ts">
-import { RouterView } from 'vue-router';
+import { RouterView, useRouter } from 'vue-router';
 import { useStepsStore } from '@/stores/steps';
 import { storeToRefs } from 'pinia';
 
 import AppLogo from '@/components/AppLogo.vue';
 
-// Get step number
+// Get step number from store
 const stepsStore = useStepsStore();
 
 const { stepNumber } = storeToRefs(stepsStore);
+
+const router = useRouter();
+const back = () => {
+  setTimeout(() => {
+    router.push({ name: `step-${stepNumber.value - 1}` });
+  }, 1000);
+};
 </script>
 
 <style lang="scss">
@@ -84,7 +98,7 @@ const { stepNumber } = storeToRefs(stepsStore);
         left: 28px;
 
         &.small {
-          left: 30px;
+          left: 12px;
         }
       }
 
@@ -130,6 +144,45 @@ const { stepNumber } = storeToRefs(stepsStore);
 
             .item-container {
               gap: 15px;
+            }
+          }
+
+          .navigation {
+            margin-top: 60px;
+
+            .back {
+              color: #adb4c7;
+              font-size: 14px;
+              text-transform: uppercase;
+              font-weight: 600;
+              font-family: Poppins, sans-serif;
+              background-color: transparent;
+              border: 0;
+              padding-left: 0;
+
+              &:hover {
+                opacity: 0.9;
+                color: #1a284d;
+              }
+            }
+
+            .next {
+              min-width: 100px;
+              border: 1px solid #24b768;
+              color: #fff;
+              background: #24b768;
+              font-family: Poppins, sans-serif;
+              font-size: 14px;
+              letter-spacing: 0.35px;
+              padding: 19px;
+              border-radius: 3px;
+              font-weight: 600;
+              transition: background 0.3s;
+
+              &:hover {
+                background-color: #198cca;
+                border: 1px solid #198cca;
+              }
             }
           }
         }
@@ -197,6 +250,14 @@ const { stepNumber } = storeToRefs(stepsStore);
 
           .progressbar {
             top: 90px;
+          }
+
+          .content {
+            .step {
+              h3 {
+                font-size: 19px;
+              }
+            }
           }
         }
       }
