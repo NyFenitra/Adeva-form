@@ -5,7 +5,7 @@
         <!-- Logo display based on step number -->
         <AppLogo :class="{ small: stepNumber > 1 }" />
 
-        <div class="steps">
+        <div class="steps offset-md-2 offset-0 col-xl-8 col-12">
           <!-- Progress-bar based on step number -->
           <div v-if="stepNumber !== 1" class="progressbar">
             <div
@@ -115,7 +115,6 @@ const next = () => {
 
       .steps {
         max-width: 770px;
-        width: 100%;
         margin: auto;
         padding: 60px 30px;
         position: relative;
@@ -236,6 +235,25 @@ const next = () => {
     }
   }
 
+  @media screen and (max-width: 1199px) {
+    .row {
+      .left {
+        .logo {
+          &.small {
+            left: 50%;
+            transform: translateX(-50%);
+          }
+        }
+        .steps {
+          .progressbar {
+            width: 100%;
+            top: 90px;
+          }
+        }
+      }
+    }
+  }
+
   @media screen and (max-width: 767px) {
     padding: 0 15px;
 
@@ -249,19 +267,10 @@ const next = () => {
 
         .logo {
           left: 15px;
-
-          &.small {
-            left: 50%;
-            transform: translateX(-50%);
-          }
         }
 
         .steps {
           padding: 60px 0;
-
-          .progressbar {
-            top: 90px;
-          }
 
           .content {
             .step {

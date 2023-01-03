@@ -222,5 +222,16 @@ const selectDial = (value: {
       }
     }
   }
+
+  @media screen and (max-width: 767px) {
+    .row {
+      margin-top: 0px;
+      padding: 0;
+
+      .form-group {
+        margin: 20px 0;
+      }
+    }
+  }
 }
 </style>
