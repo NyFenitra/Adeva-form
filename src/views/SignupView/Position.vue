@@ -7,7 +7,7 @@
     </p>
     <div class="item-container d-flex flex-column">
       <Item
-        v-for="item in items"
+        v-for="item in step1Items"
         :key="item.value"
         :title="item.title"
         :desc="item.desc"
@@ -25,6 +25,9 @@ import { useRouter } from 'vue-router';
 import Item from '@/components/Item.vue';
 import { useStepsStore } from '@/stores/steps';
 
+// Import step 1 data
+import { step1Items } from '@/utils/data';
+
 // Use steps store
 const stepsStore = useStepsStore();
 
@@ -32,34 +35,6 @@ const { setSteps } = stepsStore;
 const { steps, stepNumber } = storeToRefs(stepsStore);
 
 const router = useRouter();
-
-const items = [
-  {
-    title: 'Developers',
-    desc: 'Software Engineers, Integration Developers, and DevOps.',
-    value: 'developers',
-  },
-  {
-    title: 'Designers',
-    desc: 'UI/UX, Branding, and Visual Designers.',
-    value: 'designers',
-  },
-  {
-    title: 'Product Managers',
-    desc: 'Product Managers, Product Owners, and Business Analysts.',
-    value: 'product_managers',
-  },
-  {
-    title: 'Data Experts',
-    desc: 'Data Scientists, Big Data Experts, and Data Analysts.',
-    value: 'data_experts',
-  },
-  {
-    title: 'QA',
-    desc: 'Manual, Automation Engineers and Test Analysts.',
-    value: 'qa',
-  },
-];
 
 const onSelectItem = (value: string) => {
   setSteps(value, stepNumber.value - 1);

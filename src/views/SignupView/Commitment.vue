@@ -3,7 +3,7 @@
     <h3>What level of time commitment will you require from the expert?</h3>
     <div class="item-container d-flex flex-column">
       <Item
-        v-for="item in items"
+        v-for="item in step2Items"
         :key="item.value"
         :title="item.title"
         :desc="item.desc"
@@ -21,18 +21,8 @@ import { useRouter } from 'vue-router';
 import Item from '@/components/Item.vue';
 import { useStepsStore } from '@/stores/steps';
 
-const items = [
-  {
-    title: 'Full-time',
-    desc: '40 hrs/week',
-    value: 'fulltime',
-  },
-  {
-    title: 'Part-time',
-    desc: '20 hrs/week',
-    value: 'parttime',
-  },
-];
+// Import step 2 data
+import { step2Items } from '@/utils/data';
 
 // Use steps store
 const stepsStore = useStepsStore();
@@ -43,7 +33,7 @@ const { steps, stepNumber } = storeToRefs(stepsStore);
 const router = useRouter();
 
 const onSelectItem = (value: string) => {
-  setSteps(value, 1);
+  setSteps(value, stepNumber.value - 1);
 
   setTimeout(() => {
     router.push({ name: `step-${stepNumber.value + 1}` });
