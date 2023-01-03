@@ -29,6 +29,16 @@ const router = createRouter({
           path: 'start-time',
           component: () => import('../views/SignupView/StartTime.vue'),
         },
+        {
+          name: 'step-5',
+          path: 'register',
+          component: () => import('../views/SignupView/Register.vue'),
+        },
+        {
+          name: 'step-6',
+          path: 'schedule',
+          component: () => import('../views/SignupView/Schedule.vue'),
+        },
       ],
     },
     // Not found then redirect to /signup
