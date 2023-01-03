@@ -13,12 +13,31 @@ export const useStepsStore = defineStore('steps', () => {
   // Store steps as array and persist in localstorage
   const steps = ref(JSON.parse(localStorage.getItem('steps') as string) || []);
 
-  // Index based on step number
+  // Index of each step's data is based on step number
   const setSteps = (value: string, index: number) => {
     steps.value[index] = value;
     localStorage.setItem('steps', JSON.stringify(steps.value));
   };
   //
 
-  return { stepNumber, steps, setSteps };
+  // Skills is an array
+  const pushSkills = (value: string) => {
+    // Initialize skills as array if not defined
+    steps.value[2] = Array.isArray(steps.value[2]) ? steps.value[2] : [];
+
+    // Don't duplicate value
+    !steps.value[2].includes(value) && steps.value[2].push(value);
+    localStorage.setItem('steps', JSON.stringify(steps.value));
+  };
+
+  const removeSkills = (value: string) => {
+    // Initialize skills as array if not defined
+    steps.value[2] = Array.isArray(steps.value[2])
+      ? steps.value[2].filter((e) => e !== value)
+      : [];
+    localStorage.setItem('steps', JSON.stringify(steps.value));
+  };
+  //
+
+  return { stepNumber, steps, setSteps, pushSkills, removeSkills };
 });

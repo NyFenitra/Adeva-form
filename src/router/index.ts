@@ -12,12 +12,17 @@ const router = createRouter({
           name: 'step-1',
           path: '',
           alias: 'position',
-          component: () => import('../views/SignupView/Index.vue'),
+          component: () => import('../views/SignupView/Position.vue'),
         },
         {
           name: 'step-2',
           path: 'commitment',
           component: () => import('../views/SignupView/Commitment.vue'),
+        },
+        {
+          name: 'step-3',
+          path: 'skills',
+          component: () => import('../views/SignupView/Skills.vue'),
         },
       ],
     },
