@@ -67,8 +67,12 @@
 import { RouterView, useRouter } from 'vue-router';
 import { useStepsStore } from '@/stores/steps';
 import { storeToRefs } from 'pinia';
+import { onBeforeMount } from 'vue';
 
 import AppLogo from '@/components/AppLogo.vue';
+
+// Set document title
+onBeforeMount(() => (document.title = 'Get started with Adeva'));
 
 // Get step number from store
 const stepsStore = useStepsStore();
