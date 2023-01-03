@@ -23,7 +23,9 @@
               class="navigation d-flex align-items-center justify-content-between"
             >
               <button class="back" @click="back">Back</button>
-              <button v-if="stepNumber === 3" class="next">Next</button>
+              <button v-if="stepNumber === 3" class="next" @click="next">
+                Next
+              </button>
             </div>
           </div>
         </div>
@@ -73,6 +75,11 @@ const router = useRouter();
 const back = () => {
   setTimeout(() => {
     router.push({ name: `step-${stepNumber.value - 1}` });
+  }, 1000);
+};
+const next = () => {
+  setTimeout(() => {
+    router.push({ name: `step-${stepNumber.value + 1}` });
   }, 1000);
 };
 </script>
