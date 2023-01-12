@@ -39,8 +39,6 @@ const router = useRouter();
 const onSelectItem = (value: string) => {
   setSteps(value, stepNumber.value - 1);
 
-  setTimeout(() => {
-    router.push({ name: `step-${stepNumber.value + 1}` });
-  }, 1000);
+  router.push({ name: `step-${stepNumber.value + 1}` });
 };
 </script>

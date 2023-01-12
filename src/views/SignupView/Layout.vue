@@ -81,14 +81,10 @@ const { stepNumber } = storeToRefs(stepsStore);
 
 const router = useRouter();
 const back = () => {
-  setTimeout(() => {
-    router.push({ name: `step-${stepNumber.value - 1}` });
-  }, 1000);
+  router.push({ name: `step-${stepNumber.value - 1}` });
 };
 const next = () => {
-  setTimeout(() => {
-    router.push({ name: `step-${stepNumber.value + 1}` });
-  }, 1000);
+  router.push({ name: `step-${stepNumber.value + 1}` });
 };
 </script>
 
